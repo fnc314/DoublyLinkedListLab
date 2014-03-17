@@ -19,6 +19,11 @@
 # reverse, max, min, reduce, each, flatten
 class List
 
+  require './node.rb'
+
+  attr_accessor :head, :tail
+  attr_reader :length
+
   def initialize
     @head = nil
     @tail = nil
@@ -27,11 +32,25 @@ class List
 
   # Adds a new value to the end of the list.
   def push(value)
+    new_node = Node.new(value)
+    if @head == nil
+      @head = new_node
+      @tail = @head
+    else
+      old_tail = @tail
+      @tail = Node.new(value)
+      @tail.previous = old_tail
+      old_tail.next = @tail
+    end
+    @length += 1
+    self
   end
 
   # Returns the value that is popped off
   # or nil if none exists
   def pop
+    @length -= 1
+    self
   end
 
   def insert(value)
