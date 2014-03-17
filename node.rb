@@ -2,17 +2,12 @@
 # nodes.
 class Node
   
+  attr_accessor :next, :previous, :value
+
   def initialize(value)
     @value = value
     @next = nil
     @previous = nil
   end
 
-  def next
-    return @next
-  end
-
-  def previous
-    return @previous
-  end
 end
