@@ -49,8 +49,15 @@ class List
   # Returns the value that is popped off
   # or nil if none exists
   def pop
-    @length -= 1
-    self
+    if @tail == nil
+      return nil
+    else
+      new_tail = @tail.previous
+      pop = @tail.value
+      @tail = new_tail
+      @length -= 1
+    end
+    return pop
   end
 
   def insert(value)
